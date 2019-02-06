@@ -3,10 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="./lib/ext-all-debug-w-comments.js"></script>
+    <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css">
 </head>
 <body>
 
-hello world
+<script type="text/javascript">
+    // viewprot
 
+    var viewport = Ext.create('Ext.container.Viewport', {
+        layout: 'border',
+        items: []
+    });
+
+  var itemsViewport=[{
+      //헤더 메뉴 위치는 north 위에 넣는다. 공통
+
+      region: 'north',
+            html: '<h1 class="x-panel-header">Page Title</h1>',
+            border: false,
+            margins: '0 0 5 0'
+    }, {
+        region: 'west',
+                collapsible: true,
+                title: 'Navigation',
+                width: 150
+        // could use a TreePanel or AccordionLayout for navigational items
+    }, {
+
+      //taile 위치는 south 넣는다.통 공통
+        region: 'south',
+                title: 'South Panel',
+                collapsible: true,
+                html: 'Information goes here',
+                split: true,
+                height: 100,
+                minHeight: 100
+    }, {
+        region: 'east',
+                title: 'East Panel',
+                collapsible: true,
+                split: true,
+                width: 150
+    }, {
+        region: 'center',
+                xtype: 'tabpanel', // TabPanel itself has no title
+                activeTab: 0,      // First tab active by default
+                items: {
+            title: 'Default Tab',
+                    html: 'The first tab\'s content. Others may be added dynamically'
+        }
+    }];
+
+    viewport.add(itemsViewport);
+
+    // 그리드
+    Ext.creaet('VC.grid.CommonGrid', {
+
+    });
+
+    // add at north, west, south, east, center
+
+    // 사용자 정의 함수
+    function sample(){
+    }
+
+</script>
 </body>
 </html>
