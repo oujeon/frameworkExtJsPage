@@ -1,73 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title></title>
     <script src="./lib/ext-all-debug-w-comments.js"></script>
-    <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css" />
+    <script src="./defines/common/commonHeaderMenu.js"></script>
+    <script src="./defines/index/index.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      Ext.onReady(function() {
+        // -------------------------------------------------------------------------------------------------------------
+        // Viewport
+        // -------------------------------------------------------------------------------------------------------------
+        var viewport = Ext.create("Ext.container.Viewport", {
+          layout: "border",
+          items: []
+        });
+        //헤더 메뉴 위치는 north 위에 넣는다. 공통
+        var itemsViewport = [
+          {
+            xtype: "container",
+            region: "north",
+            height: 50,
+            margin: 2,
+            style: "background-color:#00FF48",
+            layout: {
+              type: "hbox",
+              align: "middle",
+              pack: "center"
+            },
+            items: [
+              {
+                xtype: "label",
+                itemid: "labelHeader",
+                html: "<h1>Framework Extjs Page</h1>"
+              }
+            ]
+          },
+          {
+            xtype: "container",
+            id: "menuContainer",
+            itemId: "menuContainer",
+            region: "north",
+            height: 50,
+            margin: 2,
+            style: "background-color:#00FF48",
+            layout: {
+              type: "vbox",
+              align: "stretch",
+              pack: "center"
+            },
+            items: [
+              //
+            ]
+          },
+          {
+            xtype: "container",
+            id: "northContainer",
+            itemId: "northContainer",
+            region: "north",
+            height: 150,
+            margin: 5,
+            style: "background-color:#AA3838",
+            layout: "fit",
+            items: [
+              // north grid
+            ]
+          },
+          {
+            xtype: "container",
+            id: "westContainer",
+            itemId: "westContainer",
+            region: "west",
+            margin: 2,
+            style: "background-color:#D76D6D",
+            width: 300,
+            layout: "fit",
+            items: [
+              // west grid
+            ]
+          },
+          {
+            xtype: "container",
+            id: "centerContainer",
+            itemId: "centerContainer",
+            region: "center",
+            margin: 2,
+            style: "background-color:#D76D6D",
+            layout: "fit",
+            items: []
+          },
+          {
+            xtype: "container",
+            id: "eastContainer",
+            itemId: "eastContainer",
+            region: "east",
+            margin: 2,
+            style: "background-color:#D76D6D",
+            width: 300,
+            layout: "fit",
+            items: [
+              //
+            ]
+          },
+          {
+            xtype: "container",
+            id: "southContainer",
+            itemId: "southContainer",
+            region: "south",
+            height: 200,
+            margin: 2,
+            style: "background-color:#AA3838",
+            layout: "fit",
+            items: [
+              //
+            ]
+          },
+          {
+            xtype: "container",
+            region: "south",
+            height: 50,
+            margin: 2,
+            style: "background-color:#00FF48",
+            layout: {
+              type: "vbox",
+              align: "stretch",
+              pack: "center"
+            },
+            items: [
+              {
+                xtype: "toolbar",
+                margin: 5,
+                items: [
+                  //
+                ]
+              }
+            ]
+          },
+          {
+            xtype: "container",
+            region: "south",
+            height: 50,
+            margin: 2,
+            style: "background-color:#00FF48",
+            layout: {
+              type: "vbox",
+              align: "stretch",
+              pack: "center"
+            },
+            items: [
+              {
+                xtype: "toolbar",
+                margin: 5,
+                items: [
+                  //
+                ]
+              }
+            ]
+          }
+        ];
+        // add viewport
+        viewport.add(itemsViewport);
+        // -------------------------------------------------------------------------------------------------------------
+        // define
+        // -------------------------------------------------------------------------------------------------------------
 
-<script type="text/javascript">
-    // viewprot
 
-    var viewport = Ext.create('Ext.container.Viewport', {
-        layout: 'border',
-        items: []
-    });
 
-  var itemsViewport=[{
-      //헤더 메뉴 위치는 north 위에 넣는다. 공통
 
-      region: 'north',
-            html: '<h1 class="x-panel-header">Page Title</h1>',
-            border: false,
-            margins: '0 0 5 0'
-    }, {
-        region: 'west',
-                collapsible: true,
-                title: 'Navigation',
-                width: 150
-        // could use a TreePanel or AccordionLayout for navigational items
-    }, {
+        Ext.define("SupportTools.view.WestGrid", {
+          extend: "Ext.grid.Panel",
+          alias: "widget.mygridpanel5",
 
-      //taile 위치는 south 넣는다.통 공통
-        region: 'south',
-                title: 'South Panel',
-                collapsible: true,
-                html: 'Information goes here',
-                split: true,
-                height: 100,
-                minHeight: 100
-    }, {
-        region: 'east',
-                title: 'East Panel',
-                collapsible: true,
-                split: true,
-                width: 150
-    }, {
-        region: 'center',
-                xtype: 'tabpanel', // TabPanel itself has no title
-                activeTab: 0,      // First tab active by default
-                items: {
-            title: 'Default Tab',
-                    html: 'The first tab\'s content. Others may be added dynamically'
-        }
-    }];
+          requires: [],
 
-    viewport.add(itemsViewport);
+          viewModel: {
+            type: "mygridpanel6"
+          },
+          title: "West Grid",
 
-    // 그리드
-    Ext.creaet('VC.grid.CommonGrid', {
+          columns: [
+            {
+              xtype: "gridcolumn",
+              dataIndex: "name",
+              text: "String"
+            }
+          ],
+          listeners: {
+            cellclick: "onGridpanelCellClick"
+          },
 
-    });
+          onGridpanelCellClick: function(
+            tableview,
+            td,
+            cellIndex,
+            record,
+            tr,
+            rowIndex,
+            e,
+            eOpts
+          ) {
+            alert("onGridpanelCellClick");
+          }
+        });
 
-    // add at north, west, south, east, center
+        Ext.define("SupportTools.store.WestGridStore", {
+          extend: "Ext.data.Store",
 
-    // 사용자 정의 함수
-    function sample(){
-    }
+          requires: [],
 
-</script>
-</body>
+          constructor: function(cfg) {
+            var me = this;
+            cfg = cfg || {};
+            me.callParent([
+              Ext.apply(
+                {
+                  storeId: "store",
+                  data: [
+                    {
+                      name: "illum"
+                    },
+                    {
+                      name: "facere"
+                    },
+                    {
+                      name: "similique"
+                    }
+                  ],
+                  proxy: {
+                    type: "ajax",
+                    reader: {
+                      type: "array"
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "name"
+                    }
+                  ]
+                },
+                cfg
+              )
+            ]);
+          }
+        });
+
+        Ext.define("SupportTools.view.CenterGrid", {
+          extend: "Ext.grid.Panel",
+          alias: "widget.mygridpanel5",
+
+          requires: [],
+
+          viewModel: {
+            type: "mygridpanel6"
+          },
+          title: "Center Grid",
+
+          columns: [
+            {
+              xtype: "gridcolumn",
+              dataIndex: "name",
+              text: "String"
+            }
+          ],
+          listeners: {
+            cellclick: "onGridpanelCellClick"
+          },
+
+          onGridpanelCellClick: function(
+            tableview,
+            td,
+            cellIndex,
+            record,
+            tr,
+            rowIndex,
+            e,
+            eOpts
+          ) {
+            alert("onGridpanelCellClick");
+          }
+        });
+
+        Ext.define("SupportTools.store.CenterGridStore", {
+          extend: "Ext.data.Store",
+
+          requires: [],
+
+          constructor: function(cfg) {
+            var me = this;
+            cfg = cfg || {};
+            me.callParent([
+              Ext.apply(
+                {
+                  storeId: "store",
+                  data: [
+                    {
+                      name: "illum"
+                    },
+                    {
+                      name: "facere"
+                    },
+                    {
+                      name: "similique"
+                    }
+                  ],
+                  proxy: {
+                    type: "ajax",
+                    reader: {
+                      type: "array"
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "name"
+                    }
+                  ]
+                },
+                cfg
+              )
+            ]);
+          }
+        });
+
+        Ext.define("SupportTools.view.EastGrid", {
+          extend: "Ext.grid.Panel",
+          alias: "widget.mygridpanel5",
+
+          requires: [],
+
+          viewModel: {
+            type: "mygridpanel6"
+          },
+          title: "East Grid",
+
+          columns: [
+            {
+              xtype: "gridcolumn",
+              dataIndex: "name",
+              text: "String"
+            }
+          ],
+          listeners: {
+            cellclick: "onGridpanelCellClick"
+          },
+
+          onGridpanelCellClick: function(
+            tableview,
+            td,
+            cellIndex,
+            record,
+            tr,
+            rowIndex,
+            e,
+            eOpts
+          ) {
+            alert("onGridpanelCellClick");
+          }
+        });
+
+        Ext.define("SupportTools.store.EastGridStore", {
+          extend: "Ext.data.Store",
+
+          requires: [],
+
+          constructor: function(cfg) {
+            var me = this;
+            cfg = cfg || {};
+            me.callParent([
+              Ext.apply(
+                {
+                  storeId: "store",
+                  data: [
+                    {
+                      name: "illum"
+                    },
+                    {
+                      name: "facere"
+                    },
+                    {
+                      name: "similique"
+                    }
+                  ],
+                  proxy: {
+                    type: "ajax",
+                    reader: {
+                      type: "array"
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "name"
+                    }
+                  ]
+                },
+                cfg
+              )
+            ]);
+          }
+        });
+
+        Ext.define("SupportTools.view.SouthGrid", {
+          extend: "Ext.grid.Panel",
+          alias: "widget.mygridpanel5",
+
+          requires: [],
+
+          viewModel: {
+            type: "mygridpanel6"
+          },
+          title: "South Grid",
+
+          columns: [
+            {
+              xtype: "gridcolumn",
+              dataIndex: "name",
+              text: "String"
+            }
+          ],
+          listeners: {
+            cellclick: "onGridpanelCellClick"
+          },
+
+          onGridpanelCellClick: function(
+            tableview,
+            td,
+            cellIndex,
+            record,
+            tr,
+            rowIndex,
+            e,
+            eOpts
+          ) {
+            alert("onGridpanelCellClick");
+          }
+        });
+
+        Ext.define("SupportTools.store.SouthGridStore", {
+          extend: "Ext.data.Store",
+
+          requires: [],
+
+          constructor: function(cfg) {
+            var me = this;
+            cfg = cfg || {};
+            me.callParent([
+              Ext.apply(
+                {
+                  storeId: "store",
+                  data: [
+                    {
+                      name: "illum"
+                    },
+                    {
+                      name: "facere"
+                    },
+                    {
+                      name: "similique"
+                    }
+                  ],
+                  proxy: {
+                    type: "ajax",
+                    reader: {
+                      type: "array"
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "name"
+                    }
+                  ]
+                },
+                cfg
+              )
+            ]);
+          }
+        });
+
+        // -------------------------------------------------------------------------------------------------------------
+        // add Store in Grid
+        // -------------------------------------------------------------------------------------------------------------
+        var createNorthGrid = Ext.create("SupportTools.view.NorthGrid");
+        var createNorthGridStore = Ext.create(
+          "SupportTools.store.northGridStore"
+        );
+        createNorthGrid.bindStore(createNorthGridStore);
+
+        var createWestGrid = Ext.create("SupportTools.view.WestGrid");
+        var createWestGridStore = Ext.create(
+          "SupportTools.store.WestGridStore"
+        );
+        createWestGrid.bindStore(createWestGridStore);
+
+        var createCenterGrid = Ext.create("SupportTools.view.CenterGrid");
+        var createCenterGridStore = Ext.create(
+          "SupportTools.store.CenterGridStore"
+        );
+        createCenterGrid.bindStore(createCenterGridStore);
+
+        var createEastGrid = Ext.create("SupportTools.view.EastGrid");
+        var createEastGridStore = Ext.create(
+          "SupportTools.store.EastGridStore"
+        );
+        createEastGrid.bindStore(createEastGridStore);
+
+        var createSouthGrid = Ext.create("SupportTools.view.SouthGrid");
+        var createSouthGridStore = Ext.create(
+          "SupportTools.store.SouthGridStore"
+        );
+        createSouthGrid.bindStore(createSouthGridStore);
+
+        var createMenuToolbar = Ext.create("SupportTools.view.MenuToolbar");
+        console.log("createMenuToolbar : %o", createMenuToolbar);
+        // -------------------------------------------------------------------------------------------------------------
+        // add Grid in Container
+        // -------------------------------------------------------------------------------------------------------------
+        // container는 itemid로는 찾지 못한다. 다른 component는 찾는다. 위와 같은 방식으로 개발 할때는 id를 사용해서 찾는다.
+        // var northContainer = Ext.ComponentQuery.query( "container[itemid=northContainer]" )[0];
+        // id로는 찾는다.
+
+        var menuContainer = Ext.ComponentQuery.query(
+          "container[id=menuContainer]"
+        )[0];
+        var northContainer = Ext.ComponentQuery.query(
+          "container[id=northContainer]"
+        )[0];
+        var westContainer = Ext.ComponentQuery.query(
+          "container[id=westContainer]"
+        )[0];
+        var centerContainer = Ext.ComponentQuery.query(
+          "container[id=centerContainer]"
+        )[0];
+        var eastContainer = Ext.ComponentQuery.query(
+          "container[id=eastContainer]"
+        )[0];
+        var southContainer = Ext.ComponentQuery.query(
+          "container[id=southContainer]"
+        )[0];
+
+        menuContainer.add(createMenuToolbar);
+        northContainer.add(createNorthGrid);
+        westContainer.add(createWestGrid);
+        centerContainer.add(createCenterGrid);
+        eastContainer.add(createEastGrid);
+        southContainer.add(createSouthGrid);
+        // -------------------------------------------------------------------------------------------------------------
+        // 사용자 정의 함수
+        // -------------------------------------------------------------------------------------------------------------
+        function sample() {}
+      });
+    </script>
+  </body>
 </html>
