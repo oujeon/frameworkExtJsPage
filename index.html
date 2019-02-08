@@ -130,7 +130,9 @@
                 margin: 2,
                 style: "background-color:#D76D6D",
                 layout: "fit",
-                items: []
+                items: [
+                  //
+                ]
               },
               {
                 xtype: "container",
@@ -224,15 +226,25 @@
           viewModel: {
             type: "mygridpanel5"
           },
-          id: 'northGrid',
-          itemId: 'northGrid',
+          id: "northGrid",
+          itemId: "northGrid",
           title: "North Grid",
 
           columns: [
             {
               xtype: "gridcolumn",
+              dataIndex: "iid",
+              text: "ID"
+            },
+            {
+              xtype: "gridcolumn",
               dataIndex: "title",
-              text: "String"
+              text: "TITLE"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "releaseYear",
+              text: "YEAR"
             }
           ],
           listeners: {
@@ -249,25 +261,25 @@
               items: [
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnCreateNorth,
                   width: 100,
                   text: "Create"
                 },
                 {
                   xtype: "button",
-                  handler: function(button,e) {},
+                  handler: fnReadNorth,
                   width: 100,
                   text: "Read"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnUpdateNorth,
                   width: 100,
                   text: "Update"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnDeleteNorth,
                   width: 100,
                   text: "Delete"
                 }
@@ -288,41 +300,42 @@
           }
         });
 
+        Ext.define("SupportTools.store.northGridStore", {
+          extend: "Ext.data.Store",
 
-        Ext.define('SupportTools.store.northGridStore', {
-          extend: 'Ext.data.Store',
-
-          requires: [
-          ],
+          requires: [],
 
           constructor: function(cfg) {
             var me = this;
             cfg = cfg || {};
-            me.callParent([Ext.apply({
-              storeId: 'northGridStore',
-              proxy: {
-                type: 'ajax',
-                url: '/json/movies.json',
-                reader: {
-                  type: 'json'
-                }
-              },
-              fields: [
+            me.callParent([
+              Ext.apply(
                 {
-                  name: 'iid'
+                  storeId: "northGridStore",
+                  proxy: {
+                    type: "ajax",
+                    url: "/json/movies.json",
+                    reader: {
+                      type: "json"
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "iid"
+                    },
+                    {
+                      name: "title"
+                    },
+                    {
+                      name: "releaseYear"
+                    }
+                  ]
                 },
-                {
-                  name: 'title'
-                },
-                {
-                  name: 'releaseYear'
-                }
-              ]
-            }, cfg)]);
+                cfg
+              )
+            ]);
           }
         });
-
-
 
         Ext.define("SupportTools.view.WestGrid", {
           extend: "Ext.grid.Panel",
@@ -333,13 +346,25 @@
           viewModel: {
             type: "mygridpanel6"
           },
+          id: "westGrid",
+          itemId: "westGrid",
           title: "West Grid",
 
           columns: [
             {
               xtype: "gridcolumn",
-              dataIndex: "name",
-              text: "String"
+              dataIndex: "iid",
+              text: "ID"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "title",
+              text: "TITLE"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "releaseYear",
+              text: "YEAR"
             }
           ],
           listeners: {
@@ -356,25 +381,25 @@
               items: [
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadWest,
                   width: 100,
                   text: "Create"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadWest,
                   width: 100,
                   text: "Read"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadWest,
                   width: 100,
                   text: "Update"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadWest,
                   width: 100,
                   text: "Delete"
                 }
@@ -406,27 +431,23 @@
             me.callParent([
               Ext.apply(
                 {
-                  storeId: "store",
-                  data: [
-                    {
-                      name: "illum"
-                    },
-                    {
-                      name: "facere"
-                    },
-                    {
-                      name: "similique"
-                    }
-                  ],
+                  storeId: "westGridStore",
                   proxy: {
                     type: "ajax",
+                    url: "/json/movies.json",
                     reader: {
-                      type: "array"
+                      type: "json"
                     }
                   },
                   fields: [
                     {
-                      name: "name"
+                      name: "iid"
+                    },
+                    {
+                      name: "title"
+                    },
+                    {
+                      name: "releaseYear"
                     }
                   ]
                 },
@@ -445,13 +466,25 @@
           viewModel: {
             type: "mygridpanel6"
           },
+          id: "centerGrid",
+          itemId: "centerGrid",
           title: "Center Grid",
 
           columns: [
             {
               xtype: "gridcolumn",
-              dataIndex: "name",
-              text: "String"
+              dataIndex: "iid",
+              text: "ID"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "title",
+              text: "TITLE"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "releaseYear",
+              text: "YEAR"
             }
           ],
           listeners: {
@@ -468,25 +501,25 @@
               items: [
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadCenter,
                   width: 100,
                   text: "Create"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadCenter,
                   width: 100,
                   text: "Read"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadCenter,
                   width: 100,
                   text: "Update"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadCenter,
                   width: 100,
                   text: "Delete"
                 }
@@ -518,27 +551,23 @@
             me.callParent([
               Ext.apply(
                 {
-                  storeId: "store",
-                  data: [
-                    {
-                      name: "illum"
-                    },
-                    {
-                      name: "facere"
-                    },
-                    {
-                      name: "similique"
-                    }
-                  ],
+                  storeId: "centerGridStore",
                   proxy: {
                     type: "ajax",
+                    url: "/json/movies.json",
                     reader: {
-                      type: "array"
+                      type: "json"
                     }
                   },
                   fields: [
                     {
-                      name: "name"
+                      name: "iid"
+                    },
+                    {
+                      name: "title"
+                    },
+                    {
+                      name: "releaseYear"
                     }
                   ]
                 },
@@ -557,13 +586,25 @@
           viewModel: {
             type: "mygridpanel6"
           },
+          id: "eastGrid",
+          itemId: "eastGrid",
           title: "East Grid",
 
           columns: [
             {
               xtype: "gridcolumn",
-              dataIndex: "name",
-              text: "String"
+              dataIndex: "iid",
+              text: "ID"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "title",
+              text: "TITLE"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "releaseYear",
+              text: "YEAR"
             }
           ],
           listeners: {
@@ -580,25 +621,25 @@
               items: [
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnCreateEast,
                   width: 100,
                   text: "Create"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadEast,
                   width: 100,
                   text: "Read"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnUpdateEast,
                   width: 100,
                   text: "Update"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnDeleteEast,
                   width: 100,
                   text: "Delete"
                 }
@@ -630,27 +671,23 @@
             me.callParent([
               Ext.apply(
                 {
-                  storeId: "store",
-                  data: [
-                    {
-                      name: "illum"
-                    },
-                    {
-                      name: "facere"
-                    },
-                    {
-                      name: "similique"
-                    }
-                  ],
+                  storeId: "eastGridStore",
                   proxy: {
                     type: "ajax",
+                    url: "/json/movies.json",
                     reader: {
-                      type: "array"
+                      type: "json"
                     }
                   },
                   fields: [
                     {
-                      name: "name"
+                      name: "iid"
+                    },
+                    {
+                      name: "title"
+                    },
+                    {
+                      name: "releaseYear"
                     }
                   ]
                 },
@@ -669,13 +706,25 @@
           viewModel: {
             type: "mygridpanel6"
           },
+          id: "southGrid",
+          itemId: "southGrid",
           title: "South Grid",
 
           columns: [
             {
               xtype: "gridcolumn",
-              dataIndex: "name",
-              text: "String"
+              dataIndex: "iid",
+              text: "ID"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "title",
+              text: "TITLE"
+            },
+            {
+              xtype: "gridcolumn",
+              dataIndex: "releaseYear",
+              text: "YEAR"
             }
           ],
           listeners: {
@@ -692,25 +741,25 @@
               items: [
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnCreateSouth,
                   width: 100,
                   text: "Create"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnReadSouth,
                   width: 100,
                   text: "Read"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnUpdateSouth,
                   width: 100,
                   text: "Update"
                 },
                 {
                   xtype: "button",
-                  handler: function(button, e) {},
+                  handler: fnDeleteSouth,
                   width: 100,
                   text: "Delete"
                 }
@@ -742,27 +791,23 @@
             me.callParent([
               Ext.apply(
                 {
-                  storeId: "store",
-                  data: [
-                    {
-                      name: "illum"
-                    },
-                    {
-                      name: "facere"
-                    },
-                    {
-                      name: "similique"
-                    }
-                  ],
+                  storeId: "southGridStore",
                   proxy: {
                     type: "ajax",
+                    url: "/json/movies.json",
                     reader: {
-                      type: "array"
+                      type: "json"
                     }
                   },
                   fields: [
                     {
-                      name: "name"
+                      name: "iid"
+                    },
+                    {
+                      name: "title"
+                    },
+                    {
+                      name: "releaseYear"
                     }
                   ]
                 },
@@ -806,7 +851,6 @@
         createSouthGrid.bindStore(createSouthGridStore);
 
         var createMenuToolbar = Ext.create("SupportTools.view.MenuToolbar");
-        console.log("createMenuToolbar : %o", createMenuToolbar);
         // -------------------------------------------------------------------------------------------------------------
         // add Grid in Container
         // -------------------------------------------------------------------------------------------------------------
@@ -842,42 +886,158 @@
         // -------------------------------------------------------------------------------------------------------------
         // 사용자 정의 함수
         // -------------------------------------------------------------------------------------------------------------
-        function fnCreate(button, e) {
-
-        }
-
+        function fnCreate(button, e) {}
         function fnRead(button, e) {
-
-
           var btn = button;
           var evn = e;
 
           // up, down selector로 찾지 못한다.
           // itemid로도 찾지 못한다.
           // var northGrid = Ext.ComponentQuery.query('gridpanel[id=northGrid]')[0];
-          var northGrid = fnGetGridPanel('northGrid');
+          var northGrid = fnGetGridPanel("northGrid");
           // var northStore = northGrid.getStore();
           var northStore = fnGetStore(northGrid);
 
-
           northStore.load({
-            params : {
-              sample   : "",
+            params: {
+              sample: ""
             },
-            callback : function(records, options, success) {
+            callback: function(records, options, success) {
               console.log("records : %o", records);
               console.log("options : %o", options);
               console.log("success : %o", success);
             }
           });
-
         }
-        function fnUpdate(button, e) {
+        function fnUpdate(button, e) {}
+        function fnDelete(button, e) {}
 
-        }
-        function fnDelete(button, e) {
+        // north
+        function fnCreateNorth(button, e) {}
+        function fnReadNorth(button, e) {
+          var btn = button;
+          var evn = e;
 
+          // up, down selector로 찾지 못한다.
+          // itemid로도 찾지 못한다.
+          // var northGrid = Ext.ComponentQuery.query('gridpanel[id=northGrid]')[0];
+          var northGrid = fnGetGridPanel("northGrid");
+          // var northStore = northGrid.getStore();
+          var northStore = fnGetStore(northGrid);
+
+          northStore.load({
+            params: {
+              sample: ""
+            },
+            callback: function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
         }
+        function fnUpdateNorth(button, e) {}
+        function fnDeleteNorth(button, e) {}
+
+        // West
+        function fnCreateWest(button, e) {}
+        function fnReadWest(button, e) {
+          var btn = button;
+          var evn = e;
+
+          // up, down selector로 찾지 못한다.
+          // itemid로도 찾지 못한다.
+          // var northGrid = Ext.ComponentQuery.query('gridpanel[id=northGrid]')[0];
+          var westGrid = fnGetGridPanel("westGrid");
+          // var northStore = northGrid.getStore();
+          var westStore = fnGetStore(westGrid);
+
+          westStore.load({
+            params: {
+              sample: ""
+            },
+            callback: function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
+        }
+        function fnUpdateWest(button, e) {}
+        function fnDeleteWest(button, e) {}
+
+        // Center
+        function fnCreateCenter(button, e) {}
+        function fnReadCenter(button, e) {
+          var btn = button;
+          var evn = e;
+
+          // up, down selector로 찾지 못한다.
+          // itemid로도 찾지 못한다.
+          // var northGrid = Ext.ComponentQuery.query('gridpanel[id=northGrid]')[0];
+          var centerGrid = fnGetGridPanel("centerGrid");
+          // var northStore = northGrid.getStore();
+          var centerStore = fnGetStore(centerGrid);
+
+          centerStore.load({
+            params: {
+              sample: ""
+            },
+            callback: function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
+        }
+        function fnUpdateCenter(button, e) {}
+        function fnDeleteCenter(button, e) {}
+
+        // East
+        function fnCreateEast(button, e) {}
+        function fnReadEast(button, e) {
+          var btn = button;
+          var evn = e;
+
+          var eastGrid = fnGetGridPanel("eastGrid");
+          var eastStore = fnGetStore(eastGrid);
+
+          eastStore.load({
+            params: {
+              sample: ""
+            },
+            callback: function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
+        }
+        function fnUpdateEast(button, e) {}
+        function fnDeleteEast(button, e) {}
+
+        // South
+        function fnCreateSouth(button, e) {}
+        function fnReadSouth(button, e) {
+          var btn = button;
+          var evn = e;
+
+          var southGrid = fnGetGridPanel("southGrid");
+          var southStore = fnGetStore(southGrid);
+
+          southStore.load({
+            params: {
+              sample: ""
+            },
+            callback: function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
+        }
+        function fnUpdateSouth(button, e) {}
+        function fnDeleteSouth(button, e) {}
       });
     </script>
   </body>

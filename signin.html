@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="./lib/ext-all-debug-w-comments.js"></script>
+    <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css" />
+    <script src="./funs/funs.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      Ext.onReady(function() {
+        // -------------------------------------------------------------------------------------------------------------
+        // Viewport
+        // -------------------------------------------------------------------------------------------------------------
+        var viewport = Ext.create("Ext.container.Viewport", {
+          layout: "border",
+          items: []
+        });
+        //헤더 메뉴 위치는 north 위에 넣는다. 공통
+        var itemsViewport = [
+          {
+            xtype: "container",
+            id: "signinContainer",
+            itemId: "signinContainer",
+            region: "center",
+            height: 50,
+            margin: 2,
+            style: "background-color:white",
+            layout: {
+              type: "hbox",
+              align: "middle",
+              pack: "center"
+            },
+            items: []
+          }
+        ];
+        // add viewport
+        viewport.add(itemsViewport);
+        // -------------------------------------------------------------------------------------------------------------
+        // define
+        // -------------------------------------------------------------------------------------------------------------
+        Ext.define("SupportTools.view.SignIn", {
+          extend: "Ext.container.Container",
+          alias: "widget.signIn",
+
+          requires: [],
+
+          viewModel: {
+            type: "signin"
+          },
+
+          layout: {
+            type: "vbox",
+            align: "center",
+            pack: "center"
+          },
+          items: [
+            {
+              xtype: "label",
+              html: "<h1><b> SIGN IN</b></h1>"
+            },
+            {
+              xtype: "form",
+              height: 300,
+              style: "background-color:red",
+              width: 300,
+              layout: {
+                type: "vbox",
+                align: "center",
+                pack: "center"
+              },
+              items: [
+                {
+                  xtype: "textfield",
+                  fieldLabel: "ID"
+                },
+                {
+                  xtype: "textfield",
+                  fieldLabel: "PASS WORD",
+                  inputType: "password"
+                },
+                {
+                  xtype: "button",
+                  handler: fnSignIn,
+                  width: 100,
+                  text: "Sign In"
+                }
+              ]
+            }
+          ]
+        });
+
+        // -------------------------------------------------------------------------------------------------------------
+        // add Store in Grid
+        // -------------------------------------------------------------------------------------------------------------
+        var createSignin = Ext.create("SupportTools.view.SignIn");
+        // -------------------------------------------------------------------------------------------------------------
+        // add Grid in Container
+        // -------------------------------------------------------------------------------------------------------------
+        var signinContainer = Ext.ComponentQuery.query(
+          "container[id=signinContainer]"
+        )[0];
+        signinContainer.add(createSignin);
+        // -------------------------------------------------------------------------------------------------------------
+        // 사용자 정의 함수
+        // -------------------------------------------------------------------------------------------------------------
+        function fnSignIn(button, e) {
+          alert("Sign In !!");
+        }
+      });
+    </script>
+  </body>
+</html>
