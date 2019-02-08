@@ -6,7 +6,7 @@
     <script src="./lib/ext-all-debug-w-comments.js"></script>
     <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css" />
     <script src="./defines/common/commonHeaderMenu.js"></script>
-    <script src="./defines/index/index.js"></script>
+    <script src="./funs/funs.js"></script>
   </head>
   <body>
     <script type="text/javascript">
@@ -58,81 +58,102 @@
           },
           {
             xtype: "container",
-            id: "northContainer",
-            itemId: "northContainer",
-            region: "north",
-            height: 150,
-            margin: 5,
-            style: "background-color:#AA3838",
-            layout: "fit",
-            items: [
-              // north grid
-            ]
-          },
-          {
-            xtype: "container",
-            id: "westContainer",
-            itemId: "westContainer",
-            region: "west",
-            margin: 2,
-            style: "background-color:#D76D6D",
-            width: 300,
-            layout: "fit",
-            items: [
-              // west grid
-            ]
-          },
-          {
-            xtype: "container",
-            id: "centerContainer",
-            itemId: "centerContainer",
             region: "center",
-            margin: 2,
-            style: "background-color:#D76D6D",
-            layout: "fit",
-            items: []
-          },
-          {
-            xtype: "container",
-            id: "eastContainer",
-            itemId: "eastContainer",
-            region: "east",
-            margin: 2,
-            style: "background-color:#D76D6D",
-            width: 300,
-            layout: "fit",
-            items: [
-              //
-            ]
-          },
-          {
-            xtype: "container",
-            id: "southContainer",
-            itemId: "southContainer",
-            region: "south",
-            height: 200,
-            margin: 2,
-            style: "background-color:#AA3838",
-            layout: "fit",
-            items: [
-              //
-            ]
-          },
-          {
-            xtype: "container",
-            region: "south",
-            height: 50,
-            margin: 2,
-            style: "background-color:#00FF48",
-            layout: {
-              type: "vbox",
-              align: "stretch",
-              pack: "center"
-            },
+            margin: 10,
+            layout: "border",
             items: [
               {
                 xtype: "toolbar",
+                region: "north",
+                layout: {
+                  type: "hbox",
+                  pack: "end"
+                },
+                items: [
+                  {
+                    xtype: "button",
+                    handler: fnCreate,
+                    width: 100,
+                    text: "Create"
+                  },
+                  {
+                    xtype: "button",
+                    handler: fnRead,
+                    width: 100,
+                    text: "Read"
+                  },
+                  {
+                    xtype: "button",
+                    handler: fnUpdate,
+                    width: 100,
+                    text: "Update"
+                  },
+                  {
+                    xtype: "button",
+                    handler: fnDelete,
+                    width: 100,
+                    text: "Delete"
+                  }
+                ]
+              },
+              {
+                xtype: "container",
+                id: "northContainer",
+                itemId: "northContainer",
+                region: "north",
+                height: 200,
                 margin: 5,
+                style: "background-color:#AA3838",
+                layout: "fit",
+                items: [
+                  // north grid
+                ]
+              },
+              {
+                xtype: "container",
+                id: "westContainer",
+                itemId: "westContainer",
+                region: "west",
+                margin: 2,
+                style: "background-color:#D76D6D",
+                width: 500,
+                layout: "fit",
+                items: [
+                  // west grid
+                ]
+              },
+              {
+                xtype: "container",
+                id: "centerContainer",
+                itemId: "centerContainer",
+                region: "center",
+                margin: 2,
+                style: "background-color:#D76D6D",
+                layout: "fit",
+                items: []
+              },
+              {
+                xtype: "container",
+                id: "eastContainer",
+                itemId: "eastContainer",
+                region: "east",
+                margin: 2,
+                style: "background-color:#D76D6D",
+                width: 500,
+                layout: "fit",
+                items: [
+                  //
+                ]
+              },
+              {
+                xtype: "container",
+                id: "southContainer",
+                itemId: "southContainer",
+                region: "south",
+                height: 200,
+                margin: 2,
+                style: "background-color:#AA3838",
+                layout: "fit",
                 items: [
                   //
                 ]
@@ -155,7 +176,34 @@
                 xtype: "toolbar",
                 margin: 5,
                 items: [
-                  //
+                  {
+                    xtype: "label",
+                    text: "bottom title"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            xtype: "container",
+            region: "south",
+            height: 50,
+            margin: 2,
+            style: "background-color:#00FF48",
+            layout: {
+              type: "vbox",
+              align: "stretch",
+              pack: "center"
+            },
+            items: [
+              {
+                xtype: "toolbar",
+                margin: 5,
+                items: [
+                  {
+                    xtype: "label",
+                    text: "bottom title"
+                  }
                 ]
               }
             ]
@@ -167,6 +215,112 @@
         // define
         // -------------------------------------------------------------------------------------------------------------
 
+        Ext.define("SupportTools.view.NorthGrid", {
+          extend: "Ext.grid.Panel",
+          alias: "widget.mygridpanel5",
+
+          requires: [],
+
+          viewModel: {
+            type: "mygridpanel5"
+          },
+          id: 'northGrid',
+          itemId: 'northGrid',
+          title: "North Grid",
+
+          columns: [
+            {
+              xtype: "gridcolumn",
+              dataIndex: "title",
+              text: "String"
+            }
+          ],
+          listeners: {
+            cellclick: "onGridpanelCellClick"
+          },
+          dockedItems: [
+            {
+              xtype: "toolbar",
+              dock: "top",
+              layout: {
+                type: "hbox",
+                pack: "end"
+              },
+              items: [
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Create"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button,e) {},
+                  width: 100,
+                  text: "Read"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Update"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Delete"
+                }
+              ]
+            }
+          ],
+          onGridpanelCellClick: function(
+            tableview,
+            td,
+            cellIndex,
+            record,
+            tr,
+            rowIndex,
+            e,
+            eOpts
+          ) {
+            alert("onGridpanelCellClick");
+          }
+        });
+
+
+        Ext.define('SupportTools.store.northGridStore', {
+          extend: 'Ext.data.Store',
+
+          requires: [
+          ],
+
+          constructor: function(cfg) {
+            var me = this;
+            cfg = cfg || {};
+            me.callParent([Ext.apply({
+              storeId: 'northGridStore',
+              proxy: {
+                type: 'ajax',
+                url: '/json/movies.json',
+                reader: {
+                  type: 'json'
+                }
+              },
+              fields: [
+                {
+                  name: 'iid'
+                },
+                {
+                  name: 'title'
+                },
+                {
+                  name: 'releaseYear'
+                }
+              ]
+            }, cfg)]);
+          }
+        });
 
 
 
@@ -191,7 +345,42 @@
           listeners: {
             cellclick: "onGridpanelCellClick"
           },
-
+          dockedItems: [
+            {
+              xtype: "toolbar",
+              dock: "top",
+              layout: {
+                type: "hbox",
+                pack: "end"
+              },
+              items: [
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Create"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Read"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Update"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Delete"
+                }
+              ]
+            }
+          ],
           onGridpanelCellClick: function(
             tableview,
             td,
@@ -268,7 +457,42 @@
           listeners: {
             cellclick: "onGridpanelCellClick"
           },
-
+          dockedItems: [
+            {
+              xtype: "toolbar",
+              dock: "top",
+              layout: {
+                type: "hbox",
+                pack: "end"
+              },
+              items: [
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Create"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Read"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Update"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Delete"
+                }
+              ]
+            }
+          ],
           onGridpanelCellClick: function(
             tableview,
             td,
@@ -345,7 +569,42 @@
           listeners: {
             cellclick: "onGridpanelCellClick"
           },
-
+          dockedItems: [
+            {
+              xtype: "toolbar",
+              dock: "top",
+              layout: {
+                type: "hbox",
+                pack: "end"
+              },
+              items: [
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Create"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Read"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Update"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Delete"
+                }
+              ]
+            }
+          ],
           onGridpanelCellClick: function(
             tableview,
             td,
@@ -422,7 +681,42 @@
           listeners: {
             cellclick: "onGridpanelCellClick"
           },
-
+          dockedItems: [
+            {
+              xtype: "toolbar",
+              dock: "top",
+              layout: {
+                type: "hbox",
+                pack: "end"
+              },
+              items: [
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Create"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Read"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Update"
+                },
+                {
+                  xtype: "button",
+                  handler: function(button, e) {},
+                  width: 100,
+                  text: "Delete"
+                }
+              ]
+            }
+          ],
           onGridpanelCellClick: function(
             tableview,
             td,
@@ -548,7 +842,42 @@
         // -------------------------------------------------------------------------------------------------------------
         // 사용자 정의 함수
         // -------------------------------------------------------------------------------------------------------------
-        function sample() {}
+        function fnCreate(button, e) {
+
+        }
+
+        function fnRead(button, e) {
+
+
+          var btn = button;
+          var evn = e;
+
+          // up, down selector로 찾지 못한다.
+          // itemid로도 찾지 못한다.
+          // var northGrid = Ext.ComponentQuery.query('gridpanel[id=northGrid]')[0];
+          var northGrid = fnGetGridPanel('northGrid');
+          // var northStore = northGrid.getStore();
+          var northStore = fnGetStore(northGrid);
+
+
+          northStore.load({
+            params : {
+              sample   : "",
+            },
+            callback : function(records, options, success) {
+              console.log("records : %o", records);
+              console.log("options : %o", options);
+              console.log("success : %o", success);
+            }
+          });
+
+        }
+        function fnUpdate(button, e) {
+
+        }
+        function fnDelete(button, e) {
+
+        }
       });
     </script>
   </body>

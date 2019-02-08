@@ -1,0 +1,27 @@
+ [
+        {
+            "iid": "1",
+            "title": "Star Wars",
+            "releaseYear": "1977"
+        },
+        {
+            "iid": "2",
+            "title": "Back to the Future",
+            "releaseYear": "1985"
+        },
+        {
+            "iid": "3",
+            "title": "The Matrix",
+            "releaseYear": "1999"
+        },
+        {
+            "iid": "4",
+            "title": "Inception",
+            "releaseYear": "2010"
+        },
+        {
+            "iid": "5",
+            "title": "Interstellar",
+            "releaseYear": "2014"
+        }
+ ]
