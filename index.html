@@ -6,7 +6,11 @@
     <script src="./lib/ext-all-debug-w-comments.js"></script>
     <link rel="stylesheet" href="./css/ext-theme-neptune-all-debug.css" />
     <script src="./defines/common/commonHeaderMenu.js"></script>
+    <script src="./defines/common/commonHeaderTitle.js"></script>
+    <script src="./defines/common/commonBottomMessage.js"></script>
+    <script src="./defines/common/commonBottomTitle.js"></script>
     <script src="./funs/funs.js"></script>
+    <script src="./defines/borad/board001.js"></script>
   </head>
   <body>
     <script type="text/javascript">
@@ -22,21 +26,19 @@
         var itemsViewport = [
           {
             xtype: "container",
+            id: "titleContainer",
+            itemId: "titleContainer",
             region: "north",
             height: 50,
             margin: 2,
             style: "background-color:#00FF48",
             layout: {
-              type: "hbox",
-              align: "middle",
+              type: "vbox",
+              align: "stretch",
               pack: "center"
             },
             items: [
-              {
-                xtype: "label",
-                itemid: "labelHeader",
-                html: "<h1>Framework Extjs Page</h1>"
-              }
+              //
             ]
           },
           {
@@ -57,113 +59,125 @@
             ]
           },
           {
+            xtype: "toolbar",
+            region: "north",
+            layout: {
+              type: "hbox",
+              pack: "end"
+            },
+            items: [
+              {
+                xtype: "button",
+                handler: fnCreate,
+                width: 100,
+                text: "Create"
+              },
+              {
+                xtype: "button",
+                handler: fnRead,
+                width: 100,
+                text: "Read"
+              },
+              {
+                xtype: "button",
+                handler: fnUpdate,
+                width: 100,
+                text: "Update"
+              },
+              {
+                xtype: "button",
+                handler: fnDelete,
+                width: 100,
+                text: "Delete"
+              }
+            ]
+          },
+          {
             xtype: "container",
+            id: "workContainer",
+            itemId: "workContainer",
             region: "center",
             margin: 10,
             layout: "border",
             items: [
               {
-                xtype: "toolbar",
-                region: "north",
-                layout: {
-                  type: "hbox",
-                  pack: "end"
-                },
-                items: [
-                  {
-                    xtype: "button",
-                    handler: fnCreate,
-                    width: 100,
-                    text: "Create"
-                  },
-                  {
-                    xtype: "button",
-                    handler: fnRead,
-                    width: 100,
-                    text: "Read"
-                  },
-                  {
-                    xtype: "button",
-                    handler: fnUpdate,
-                    width: 100,
-                    text: "Update"
-                  },
-                  {
-                    xtype: "button",
-                    handler: fnDelete,
-                    width: 100,
-                    text: "Delete"
-                  }
-                ]
-              },
-              {
-                xtype: "container",
-                id: "northContainer",
-                itemId: "northContainer",
-                region: "north",
-                height: 200,
-                margin: 5,
-                style: "background-color:#AA3838",
-                layout: "fit",
-                items: [
-                  // north grid
-                ]
-              },
-              {
-                xtype: "container",
-                id: "westContainer",
-                itemId: "westContainer",
-                region: "west",
-                margin: 2,
-                style: "background-color:#D76D6D",
-                width: 500,
-                layout: "fit",
-                items: [
-                  // west grid
-                ]
-              },
-              {
-                xtype: "container",
-                id: "centerContainer",
-                itemId: "centerContainer",
+                xtype: 'container',
+                id: 'index001Workspace',
+                itemId: 'index001Workspace',
+                layout: 'border',
                 region: "center",
-                margin: 2,
-                style: "background-color:#D76D6D",
-                layout: "fit",
                 items: [
-                  //
-                ]
-              },
-              {
-                xtype: "container",
-                id: "eastContainer",
-                itemId: "eastContainer",
-                region: "east",
-                margin: 2,
-                style: "background-color:#D76D6D",
-                width: 500,
-                layout: "fit",
-                items: [
-                  //
-                ]
-              },
-              {
-                xtype: "container",
-                id: "southContainer",
-                itemId: "southContainer",
-                region: "south",
-                height: 200,
-                margin: 2,
-                style: "background-color:#AA3838",
-                layout: "fit",
-                items: [
-                  //
+                  {
+                    xtype: 'container',
+                    id: "northContainer",
+                    itemId: "northContainer",
+                    region: 'north',
+                    height: 200,
+                    margin: 5,
+                    layout: 'fit',
+                    items: [
+                      //
+                    ]
+                  },
+                  {
+                    xtype: 'container',
+                    margins: '5',
+                    region: 'west',
+                    id: "westContainer",
+                    itemId: "westContainer",
+                    margin: 5,
+                    width: 500,
+                    layout: 'fit',
+                    items: [
+                      //
+                    ]
+                  },
+                  {
+                    xtype: 'container',
+                    margins: '5',
+                    region: 'center',
+                    id: "centerContainer",
+                    itemId: "centerContainer",
+                    margin: 5,
+                    layout: 'fit',
+                    items: [
+                      //
+                    ]
+                  },
+                  {
+                    xtype: 'container',
+                    margins: '5',
+                    region: 'east',
+                    id: "eastContainer",
+                    itemId: "eastContainer",
+                    margin: 5,
+                    width: 500,
+                    layout: 'fit',
+                    items: [
+                      //
+                    ]
+                  },
+                  {
+                    xtype: 'container',
+                    margins: '5',
+                    region: 'south',
+                    height: 200,
+                    id: "southContainer",
+                    itemId: "southContainer",
+                    margin: 5,
+                    layout: 'fit',
+                    items: [
+                      //
+                    ]
+                  }
                 ]
               }
             ]
           },
           {
             xtype: "container",
+            id: "messageContainer",
+            itemId: "messageContainer",
             region: "south",
             height: 50,
             margin: 2,
@@ -174,20 +188,13 @@
               pack: "center"
             },
             items: [
-              {
-                xtype: "toolbar",
-                margin: 5,
-                items: [
-                  {
-                    xtype: "label",
-                    text: "bottom title"
-                  }
-                ]
-              }
+              //
             ]
           },
           {
             xtype: "container",
+            id: "bottomTitleContainer",
+            itemId: "bottomTitleContainer",
             region: "south",
             height: 50,
             margin: 2,
@@ -198,16 +205,7 @@
               pack: "center"
             },
             items: [
-              {
-                xtype: "toolbar",
-                margin: 5,
-                items: [
-                  {
-                    xtype: "label",
-                    text: "bottom title"
-                  }
-                ]
-              }
+              //
             ]
           }
         ];
@@ -820,6 +818,10 @@
         // -------------------------------------------------------------------------------------------------------------
         // add Store in Grid
         // -------------------------------------------------------------------------------------------------------------
+
+        var createTitleToolbar = Ext.create("SupportTools.view.HeaderTitle");
+        var createMenuToolbar = Ext.create("SupportTools.view.MenuToolbar");
+
         var createNorthGrid = Ext.create("SupportTools.view.NorthGrid");
         var createNorthGridStore = Ext.create(
           "SupportTools.store.northGridStore"
@@ -850,14 +852,21 @@
         );
         createSouthGrid.bindStore(createSouthGridStore);
 
-        var createMenuToolbar = Ext.create("SupportTools.view.MenuToolbar");
+        var createBottomMessageToolbar = Ext.create(
+          "SupportTools.view.BottomMessage"
+        );
+        var createBottomTitleToolbar = Ext.create(
+          "SupportTools.view.BottomTitle"
+        );
         // -------------------------------------------------------------------------------------------------------------
         // add Grid in Container
         // -------------------------------------------------------------------------------------------------------------
         // container는 itemid로는 찾지 못한다. 다른 component는 찾는다. 위와 같은 방식으로 개발 할때는 id를 사용해서 찾는다.
         // var northContainer = Ext.ComponentQuery.query( "container[itemid=northContainer]" )[0];
         // id로는 찾는다.
-
+        var titleContainer = Ext.ComponentQuery.query(
+          "container[id=titleContainer]"
+        )[0];
         var menuContainer = Ext.ComponentQuery.query(
           "container[id=menuContainer]"
         )[0];
@@ -877,15 +886,28 @@
           "container[id=southContainer]"
         )[0];
 
+        var messageContainer = Ext.ComponentQuery.query(
+          "container[id=messageContainer]"
+        )[0];
+        var bottomTitleContainer = Ext.ComponentQuery.query(
+          "container[id=bottomTitleContainer]"
+        )[0];
+
+        titleContainer.add(createTitleToolbar);
         menuContainer.add(createMenuToolbar);
         northContainer.add(createNorthGrid);
         westContainer.add(createWestGrid);
         centerContainer.add(createCenterGrid);
         eastContainer.add(createEastGrid);
         southContainer.add(createSouthGrid);
+
+        messageContainer.add(createBottomMessageToolbar);
+        bottomTitleContainer.add(createBottomTitleToolbar);
+
         // -------------------------------------------------------------------------------------------------------------
         // 사용자 정의 함수
         // -------------------------------------------------------------------------------------------------------------
+
         function fnCreate(button, e) {}
         function fnRead(button, e) {
           var btn = button;
